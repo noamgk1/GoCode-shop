@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import Header from "./componentos/Header";
 import Products from "./componentos/Products";
@@ -192,19 +193,26 @@ function App() {
     },
   ];
 
+  const [choose, setChoose] = useState(products);
+
   const categories = products
     .map((p) => p.category)
     .filter((value, index, array) => array.indexOf(value) === index);
+  categories.push("All Products");
 
   const onChoose = (c) => {
-    /* products.map((p)=>p.category)
-      .filter((c.target.value)=>)*/
+    c = c.target.value;
+    if (c === "All Products") {
+      setChoose(products);
+    } else {
+      setChoose(products.filter((choose) => choose.category === c));
+    }
   };
   return (
     <div>
-      <Header categories={categories} onChoose={onChoose} />
+      <Header onChoose={onChoose} categories={categories} />
       <br />
-      <Products products={products} />
+      <Products products={choose} />
     </div>
   );
 }

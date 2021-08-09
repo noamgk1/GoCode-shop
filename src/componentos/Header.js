@@ -1,6 +1,6 @@
 import "./Header.css";
 
-const Header = ({ categories }) => {
+const Header = ({ categories, onChoose }) => {
   return (
     <nav>
       <h1>Jackets</h1>
@@ -8,9 +8,9 @@ const Header = ({ categories }) => {
       <div className="sort">
         <div className="collection-sort">
           <label>Filter by:</label>
-          <select>
+          <select onChange={onChoose}>
             {categories.map((p) => (
-              <option value="/">{p}</option>
+              <option value={p}>{p}</option>
             ))}
           </select>
         </div>
