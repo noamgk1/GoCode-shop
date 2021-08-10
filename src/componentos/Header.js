@@ -1,6 +1,8 @@
 import "./Header.css";
 
 const Header = ({ categories, onChoose }) => {
+  let index = 1;
+
   return (
     <nav>
       <h1>Jackets</h1>
@@ -10,7 +12,9 @@ const Header = ({ categories, onChoose }) => {
           <label>Filter by:</label>
           <select onChange={onChoose}>
             {categories.map((p) => (
-              <option value={p}>{p}</option>
+              <option key={index++} value={p}>
+                {p}
+              </option>
             ))}
           </select>
         </div>
