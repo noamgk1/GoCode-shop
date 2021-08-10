@@ -2,7 +2,6 @@ import "./Header.css";
 
 const Header = ({ categories, onChoose }) => {
   let index = 1;
-
   return (
     <nav>
       <h1>Jackets</h1>
