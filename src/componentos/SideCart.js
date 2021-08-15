@@ -113,7 +113,9 @@ const SideCart = () => {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>Cart</Button>
+          <Button onClick={toggleDrawer(anchor, true)} variant="outlined">
+            My Cart
+          </Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
