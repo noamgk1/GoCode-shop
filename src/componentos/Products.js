@@ -6,7 +6,9 @@ const Products = ({ products }) => {
     <section className="products">
       {products.map((products) => (
         <Product
+          p={products}
           key={products.id}
+          id={products.id}
           title={products.title}
           price={products.price}
           description={products.description}
