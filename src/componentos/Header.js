@@ -1,4 +1,5 @@
 import FilterByPrice from "./FilterByPrice";
+import SideCart from "./SideCart";
 import "./Header.css";
 
 const Header = ({ categories, onChoose, value, handleChange }) => {
@@ -33,6 +34,9 @@ const Header = ({ categories, onChoose, value, handleChange }) => {
               <option value="/">Date, new to old</option>
               <option value="/">Date, old to new</option>
             </select>
+          </div>
+          <div className="collection-sort">
+            <SideCart />
           </div>
         </div>
       </nav>

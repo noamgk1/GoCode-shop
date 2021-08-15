@@ -4,7 +4,6 @@ import CartContextProvider from "./componentos/CartContext";
 import Header from "./componentos/Header";
 import Loading from "./componentos/Loading";
 import Products from "./componentos/Products";
-import SideCart from "./componentos/SideCart";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -69,7 +68,6 @@ function App() {
         />
         <br />
         {preLoading && <Loading />}
-        <SideCart />
         <br />
         <Products products={products} />
       </div>
