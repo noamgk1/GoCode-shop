@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../Context/CartContext";
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
+
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -16,6 +16,10 @@ import IconButton from "@material-ui/core/IconButton";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { withStyles } from "@material-ui/core/styles";
+
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 400,
@@ -35,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}))(Badge);
 
 const SideCart = () => {
   const { cartList } = useContext(CartContext);
@@ -82,12 +95,15 @@ const SideCart = () => {
             />
             <div className={classes.root}>
               <ListItemSecondaryAction>
-                <IconButton className={classes.margin}>
-                  <AddBoxIcon onClick={() => onAdd(p)} />
+                <IconButton className={classes.margin} onClick={() => onAdd(p)}>
+                  <AddBoxIcon />
                 </IconButton>
                 <>{p.qty}</>
-                <IconButton className={classes.margin}>
-                  <IndeterminateCheckBoxIcon onClick={() => onRemove(p)} />
+                <IconButton
+                  className={classes.margin}
+                  onClick={() => onRemove(p)}
+                >
+                  <IndeterminateCheckBoxIcon />
                 </IconButton>
               </ListItemSecondaryAction>
             </div>
@@ -113,9 +129,15 @@ const SideCart = () => {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} variant="outlined">
-            My Cart
-          </Button>
+          <IconButton
+            className={classes.margin}
+            onClick={toggleDrawer(anchor, true)}
+          >
+            <StyledBadge badgeContent={cartList.length} color="secondary">
+              <ShoppingCartIcon variant="outlined" />
+            </StyledBadge>
+          </IconButton>
+
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

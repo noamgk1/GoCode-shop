@@ -1,4 +1,3 @@
-
 html,
 body,
 div,
@@ -155,25 +154,31 @@ h1 {
   font-size: 28px;
   font-weight: 300;
   flex: 1;
+  color: #126264;
+}
+h1:hover {
+  color: #5f9ea0;
 }
 
 h5 {
   font-weight: 500;
   line-height: 1.7em;
+  color: #126264;
+}
+h5:hover {
+  color: #5f9ea0;
 }
 
 h6 {
   color: #666;
   font-size: 14px;
+  color: #126264;
+}
+h6:hover {
+  color: #5f9ea0;
 }
 
 /* Product Layout */
-
-
-
-
-
-
 
 @media (max-width: 920px) {
   .product-card {
@@ -204,4 +209,32 @@ h6 {
   .sort {
     align-self: flex-start;
   }
+}
+a {
+  text-decoration: none;
+  color: #126264;
+}
+a:hover {
+  color: #5f9ea0;
+}
+h2 {
+  text-decoration: none;
+  color: #126264;
+}
+h2:hover {
+  color: #5f9ea0;
+}
+h3 {
+  text-decoration: none;
+  color: #126264;
+}
+h3:hover {
+  color: #5f9ea0;
+}
+h4 {
+  text-decoration: none;
+  color: #126264;
+}
+h4:hover {
+  color: #5f9ea0;
 }

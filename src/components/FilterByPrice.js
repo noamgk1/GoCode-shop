@@ -25,8 +25,8 @@ function ValueLabelComponent(props) {
 const AirbnbSlider = withStyles({
   root: {
     color: "#3a8589",
-    height: 1,
-    padding: "1px 0",
+    height: -15,
+    padding: "0px 0",
   },
   thumb: {
     height: 27,

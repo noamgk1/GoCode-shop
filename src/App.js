@@ -1,76 +1,71 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import CartContextProvider from "./componentos/CartContext";
-import Header from "./componentos/Header";
-import Loading from "./componentos/Loading";
-import Products from "./componentos/Products";
+import SideCart from "./components/SideCart";
+import Home from "./views/Home";
+import CartContextProvider from "./Context/CartContext";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ProductDetails from "./views/ProductDetails";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+
+function About() {
+  return <h2>About</h2>;
+}
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [firstProducts, setFirstProducts] = useState([]);
-  const [preLoading, setPreLoading] = useState(false);
-  const [productsFilterPrice, setProductsFilterPrice] = useState([]);
-
-  const onChoose = (c) => {
-    console.log(c.target.value);
-    if (c.target.value === "All Products") {
-      setProducts(firstProducts);
-      setProductsFilterPrice(firstProducts);
-    } else {
-      setProducts(
-        firstProducts.filter((choose) => choose.category === c.target.value)
-      );
-      setProductsFilterPrice(
-        firstProducts.filter((choose) => choose.category === c.target.value)
-      );
-    }
-  };
-
-  const onHandleChange = (event, newValue) => {
-    console.log(newValue);
-    setProducts(
-      productsFilterPrice.filter(
-        (choose) => choose.price >= newValue[0] && choose.price <= newValue[1]
-      )
-    );
-  };
-
-  useEffect(() => {
-    setPreLoading(true);
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => {
-        setProducts(json);
-        setFirstProducts(json);
-        setProductsFilterPrice(json);
-        setPreLoading(false);
-      });
-  }, []);
-  const values = productsFilterPrice
-    .map((p) => p.price)
-    .filter((value) => value > 0);
-
-  const categories = [
-    "All Products",
-    ...firstProducts
-      .map((p) => p.category)
-      .filter((value, index, array) => array.indexOf(value) === index),
-  ];
-
   return (
     <CartContextProvider>
-      <div>
-        <Header
-          onChoose={onChoose}
-          categories={categories}
-          value={values}
-          handleChange={onHandleChange}
-        />
+      <Router>
+        <AppBar color="#5F9EA0">
+          <Toolbar>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography fontFamily="fontFamily" variant="h3" color="#5F9EA0">
+                My Shop
+              </Typography>
+              <Typography variant="h4">
+                <Link to="/">Home</Link>
+              </Typography>
+              <Typography variant="h4">
+                <Link to="/about">About</Link>
+              </Typography>
+
+              <Typography display="block">
+                <SideCart />
+              </Typography>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+        <Toolbar />
         <br />
-        {preLoading && <Loading />}
-        <br />
-        <Products products={products} />
-      </div>
+        <Container maxWidth="lg">
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/product/:id">
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <ProductDetails />
+              </Grid>
+            </Route>
+            <Route path="/">
+              <Home className="App-header" />
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
     </CartContextProvider>
   );
 }
