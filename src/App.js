@@ -27,7 +27,7 @@ function App() {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography fontFamily="fontFamily" variant="h3" color="#5F9EA0">
+              <Typography fontFamily="fontFamily" variant="h5" color="#5F9EA0">
                 My Shop
               </Typography>
               <Typography variant="h4">

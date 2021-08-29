@@ -43,7 +43,7 @@ export default function ProductDetails() {
   const [preLoading, setPreLoading] = useState(false);
   useEffect(() => {
     setPreLoading(true);
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`http://localhost:8080/products/${id}`)
       .then((res) => res.json())
       .then((json) => {
         setProduct(json);

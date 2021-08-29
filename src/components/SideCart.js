@@ -19,6 +19,7 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { withStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -78,12 +79,31 @@ const SideCart = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <Typography variant="h6" className={classes.title}>
-        My Cart
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <br />
+          My Cart
+        </Grid>
       </Typography>
 
       <Divider />
+
       <List>
-        {cartList.length === 0 && <div>Cart is empty</div>}
+        {cartList.length === 0 && (
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <br />
+            <h2>Cart Is Empty</h2>
+          </Grid>
+        )}
         {cartList.map((p) => (
           <ListItem>
             <ListItemIcon>
@@ -127,27 +147,25 @@ const SideCart = () => {
 
   return (
     <div>
-      {["right"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <IconButton
-            className={classes.margin}
-            onClick={toggleDrawer(anchor, true)}
-          >
-            <StyledBadge badgeContent={cartList.length} color="secondary">
-              <ShoppingCartIcon variant="outlined" />
-            </StyledBadge>
-          </IconButton>
+      <React.Fragment key={"right"}>
+        <IconButton
+          className={classes.margin}
+          onClick={toggleDrawer("right", true)}
+        >
+          <StyledBadge badgeContent={cartList.length} color="secondary">
+            <ShoppingCartIcon variant="outlined" />
+          </StyledBadge>
+        </IconButton>
 
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+        <SwipeableDrawer
+          anchor={"right"}
+          open={state["right"]}
+          onClose={toggleDrawer("right", false)}
+          onOpen={toggleDrawer("right", true)}
+        >
+          {list("right")}
+        </SwipeableDrawer>
+      </React.Fragment>
     </div>
   );
 };

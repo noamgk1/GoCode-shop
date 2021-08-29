@@ -7,8 +7,8 @@ const Products = ({ products }) => {
       {products.map((products) => (
         <Product
           p={products}
-          key={products.id}
-          id={products.id}
+          key={products._id}
+          id={products._id}
           title={products.title}
           price={products.price}
           description={products.description}

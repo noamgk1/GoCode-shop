@@ -49,7 +49,7 @@ function Home() {
 
   useEffect(() => {
     setPreLoading(true);
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://localhost:8080/products")
       .then((res) => res.json())
       .then((json) => {
         setProducts(json);
