@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/PreLoading/Loading";
 import { makeStyles } from "@material-ui/core/styles";
-
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -49,7 +48,7 @@ export default function ProductDetails() {
         setProduct(json);
         setPreLoading(false);
       });
-  }, []);
+  }, [id]);
   const qty = qtyId(id);
   const classes = useStyles();
 

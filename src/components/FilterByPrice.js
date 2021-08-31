@@ -25,8 +25,9 @@ function ValueLabelComponent(props) {
 const AirbnbSlider = withStyles({
   root: {
     color: "#3a8589",
-    height: -15,
-    padding: "0px 0",
+    height: 3,
+    padding: "13px 0",
+    align: "flex-start",
   },
   thumb: {
     height: 27,
@@ -78,7 +79,7 @@ const FilterByPrice = ({ value, handleChange }) => {
     <div className={classes.root}>
       <div className={classes.margin} />
       <Typography gutterBottom>
-        <h6>Filter by Price:</h6>
+        <box>Filter by Price:</box>
       </Typography>
       <AirbnbSlider
         ValueLabelComponent={ValueLabelComponent}

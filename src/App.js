@@ -10,10 +10,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-
-function About() {
-  return <h2>About</h2>;
-}
+import AdminControl from "./views/AdminControl";
 
 function App() {
   return (
@@ -28,13 +25,11 @@ function App() {
               alignItems="center"
             >
               <Typography fontFamily="fontFamily" variant="h5" color="#5F9EA0">
-                My Shop
+                <Link to="/">My Shop</Link>
               </Typography>
+
               <Typography variant="h4">
-                <Link to="/">Home</Link>
-              </Typography>
-              <Typography variant="h4">
-                <Link to="/about">About</Link>
+                <Link to="/control">control</Link>
               </Typography>
 
               <Typography display="block">
@@ -47,8 +42,8 @@ function App() {
         <br />
         <Container maxWidth="lg">
           <Switch>
-            <Route path="/about">
-              <About />
+            <Route path="/control">
+              <AdminControl className="App-header" />
             </Route>
             <Route path="/product/:id">
               <Grid

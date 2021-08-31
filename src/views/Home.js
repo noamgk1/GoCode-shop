@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -69,6 +70,26 @@ function Home() {
       .filter((value, index, array) => array.indexOf(value) === index),
   ];
 
+  const onSearch = (e) => {
+    const search = e.target.value;
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        fetch(`http://localhost:8080/products/?title=${search}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((product) => {
+            setProducts(product);
+          });
+        resolve();
+      }, 1000);
+    });
+  };
+
   return (
     <Grid alignItems="center">
       <div className={classes.root}>
@@ -77,6 +98,7 @@ function Home() {
           categories={categories}
           value={values}
           handleChange={onHandleChange}
+          onSearch={onSearch}
         />
 
         <br />

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Product = ({ id, image, title, price, category }) => {
+const Product = ({ id, image, title, price, category, key }) => {
   const classes = useStyles();
 
   const titleLength =
@@ -39,7 +39,7 @@ const Product = ({ id, image, title, price, category }) => {
       ? title + "-My Shop"
       : title;
 
-  const cart = { id: id, title: title, price: price, image: image };
+  const cart = { id: id, title: title, price: price, image: image, key: key };
   const { onAdd, onRemove, qtyId } = useContext(CartContext);
   const qty = qtyId(id);
   return (
